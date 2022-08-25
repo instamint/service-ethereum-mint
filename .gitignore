@@ -2,6 +2,6 @@
 .gradle
 app/src/main/java/com/instamint/services/mint/eth/.env
 .env
-
+.idea
 # Ignore Gradle build output directory
 build
