@@ -1,0 +1,100 @@
+    1  cd kafka_2.13-3.2.1/
+    2  bin/kafka-topics.sh --create --topic algorand --botstrap-server localhost:9092
+    3  bin/kafka-topics.sh --create --topic algorand --bootstrap-server localhost:9092
+    4  bin/kafka-topics.sh --create --topic algorand --bootstrap-server 137.184.132.128:9092
+    5  bin/kafka-topics.sh --create --topic myTopic --bootstrap-server localhost:9092
+    6  bin/kafka-topics.sh --create --topic myTopic --bootstrap-server r 137.184.132.128:9092
+    7  bin/kafka-topics.sh --create --topic myTopic --bootstrap-server 137.184.132.128:9092
+    8  exit
+    9  exit
+   10  cd kafka_2.13-3.2.1/
+   11  bin/kafka-server-start.sh config/server.properties 
+   12  wget https://www.apache.org/dyn/closer.cgi?path=/kafka/3.2.1/kafka_2.13-3.2.1.tgz
+   13  ls
+   14  mv 'closer.cgi?path=%2Fkafka%2F3.2.1%2Fkafka_2.13-3.2.1.tgz' kafka.tgz
+   15  apt install openjdk-11-jre-headless
+   16  apt-get update
+   17  apt install openjdk-11-jre-headless
+   18  clear
+   19  ls -al
+   20  tar zxvf kafka.tgz 
+   21  tar -xzf kafka.tgz 
+   22  rm kafka.tgz 
+   23  wget
+   24  wget --help
+   25  wget https://dlcdn.apache.org/kafka/3.2.1/kafka_2.13-3.2.1.tgz
+   26  ls
+   27  ls -al
+   28  tar zxvf kafka_2.13-3.2.1.tgz 
+   29  ls
+   30  rm kafka_2.13-3.2.1.tgz 
+   31  cd kafka_2.13-3.2.1/
+   32  ls -al
+   33  cd config
+   34  vi server.properties 
+   35  ls
+   36  cd ..
+   37  cd bin
+   38  ls -al
+   39  ./zookeeper-server-start.sh config/zookeeper.properties
+   40  cd ..
+   41  .bin/zookeeper-server-start.sh config/zookeeper.properties
+   42  ./bin/zookeeper-server-start.sh config/zookeeper.properties
+   43  cd kafka_2.13-3.2.1/
+   44  bin/kafka-server-start.sh config/server.properties 
+   45  ps -ef | grep kafka
+   46  ./bin/zookeeper-server-start.sh config/zookeeper.properties
+   47  cd kafka
+   48  ./bin/zookeeper-server-start.sh config/zookeeper.properties
+   49  cd kafka_2.13-3.2.1/
+   50  bin/zookeeper-server-start.sh config/zookeeper.properties
+   51  ls
+   52  cd kafka_2.13-3.2.1/
+   53  bin/kafka-console-producer.sh --topic myTopic --bootstrap-server 137.184.132.128:9092
+   54  cd kafka_2.13-3.2.1/
+   55  bin/zookeeper-server-start.sh config/zookeeper.properties
+   56  cd kafka
+   57  cd kafka_2.13-3.2.1/
+   58  bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server kb.instamint.com:9092
+   59  bin/kafka-console-consumer.sh --topic myTopic --from-beginning --bootstrap-server kb.instamint.com:9092
+   60  cd kafka_2.13-3.2.1/
+   61  bin/kafka-server-start.sh config/server.properties 
+   62  cd kafka_2.13-3.2.1/
+   63  bin/kafka-console-consumer.sh --topic myTopic --from-beginning --bootstrap-server kb.instamint.com:9092
+   64  cd kafka_2.13-3.2.1/
+   65  bin/kafka-server-start.sh config/server.properties 
+   66  cd kafka_2.13-3.2.1/
+   67  bin/zookeeper-server-start.sh config/zookeeper.properties
+   68  cd kafka_2.13-3.2.1/
+   69  bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+   70  bin/kafka-server-start.sh -daemon config/server.properties 
+   71  ps -ef | grep kafka
+   72  top
+   73  bin/kafka-console-consumer.sh --topic myTopic --from-beginning --bootstrap-server kb.instamint.com:9092
+   74  cd kafka_2.13-3.2.1/
+   75  bin/kafka-console-consumer.sh --topic myTopic --from-beginning --bootstrap-server kb.instamint.com:9092
+   76  bin/kafka-console-consumer.sh --topic myTopic --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   77  bin/kafka-topics.sh --create --topic service.ds --bootstrap-server kb.instamint.com:9092
+   78  bin/kafka-console-consumer.sh --topic service.ds --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   79  bin/kafka-topics.sh --create --topic eth.mint --bootstrap-server kb.instamint.com:9092
+   80  cd bin
+   81  cd kafka_2.13-3.2.1/
+   82  bin/kafka-topics.sh --create --topic eth.mint --bootstrap-server kb.instamint.com:9092
+   83  bin/kafka-console-consumer.sh --topic eth.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   84  cd kafka_2.13-3.2.1/
+   85  bin/kafka-console-consumer.sh --topic eth.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   86  clear
+   87  ls -al
+   88  cd kafka_2.13-3.2.1/
+   89  bin/kafka-console-consumer.sh --topic eth.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   90  bin/kafka-topics.sh --create --topic instamint.eth.mint --bootstrap-server kb.instamint.com:9092
+   91  bin/kafka-console-consumer.sh --topic instamint.eth.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   92  bin/kafka-topics.sh --create --topic instamint.service.eth.mint --bootstrap-server kb.instamint.com:9092
+   93  bin/kafka-console-consumer.sh --topic instamint.service.eth.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   94  cd kafka_2.13-3.2.1/
+   95  bin/kafka-topics.sh --create --topic instamint.service.algo.mint --bootstrap-server kb.instamint.com:9092
+   96  bin/kafka-console-consumer.sh --topic instamint.service.algo.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+   97  exit
+   98  cd kafka_2.13-3.2.1/
+   99  bin/kafka-console-consumer.sh --topic instamint.service.eth.mint --group more --from-beginning --bootstrap-server kb.instamint.com:9092
+  100  history > command_history.txt
