@@ -3,6 +3,7 @@
  */
 package com.instamint.services.mint.eth;
 
+import com.instamint.services.App;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

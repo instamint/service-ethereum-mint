@@ -39,5 +39,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.instamint.services.mint.eth.App'
+    mainClass = 'com.instamint.services.App'
 }

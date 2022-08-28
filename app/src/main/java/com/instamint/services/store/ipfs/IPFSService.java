@@ -1,7 +1,8 @@
-package com.instamint.services.mint.eth;
+package com.instamint.services.store.ipfs;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.instamint.services.InfuraResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
@@ -74,38 +75,19 @@ public class IPFSService {
         }
 
         // Process response and obtain CID
-        String content = null;
-        try {
-            content = new BasicResponseHandler().handleResponse(resp);
-            System.out.println("Content: " + content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        InfuraResponse ir = null;
-        try {
-            ir = mapper.readValue(content, InfuraResponse.class);
-            System.out.println("INfura response: " + ir);
-            System.out.println("cid: " + ir.getHash());
-            System.out.println("name: " + ir.getName());
-            System.out.println("size: " + ir.getSize());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        assert ir != null;
-        String cid = ir.getHash();
+        String cid = processResponse(resp);
 
 
         return cid;
     }
 
-    public void publish(String assetID, Map<String,String> references) throws IOException, InterruptedException {
+    public Map publish(Map<String,String> references) throws IOException, InterruptedException {
         Dotenv dotenv = Dotenv.configure().load();
         String infuraIPFSProjectID = dotenv.get("INFURA_IPFS_PROJECT_ID");
         String infuraIpfsProjectSecret = dotenv.get("INFURA_IPFS_PROJECT_SECRET");
         System.out.println(infuraIPFSProjectID);
         System.out.println(infuraIpfsProjectSecret);
+        Map<String,String> cids = new HashMap();
 
         for(Map.Entry<String,String> ref : references.entrySet()) {
             String key = ref.getKey();
@@ -116,8 +98,9 @@ public class IPFSService {
             HttpGet req = new HttpGet(url);
             CloseableHttpResponse resp = client.execute(req);
             byte[] image = resp.getEntity().getContent().readAllBytes();
-            Files.write(new File(key).toPath(), image);
+            //Files.write(new File(key).toPath(), image);
 
+            System.out.println("Preparing to post to Infura");
             // Prepare post w/ auth to Infura
             HttpPost post = new HttpPost(INFURA_IPFS_API_ADD_URL);
             String auth = infuraIPFSProjectID + ":" + infuraIpfsProjectSecret;
@@ -133,22 +116,51 @@ public class IPFSService {
             HttpEntity entity = builder.build();
             post.setEntity(entity);
 
-            // Post
+            // POST to Infura
             resp = client.execute(post);
 
-            // Process response and obtain CID
-            String content = new BasicResponseHandler().handleResponse(resp);
-            Jsonb jsonb = JsonbBuilder.create();
-            InfuraResponse ir = jsonb.fromJson(content,InfuraResponse.class);
-            System.out.println(ir.getHash());
+            // Evaluate response
+            System.out.println("Infura response: " + resp.toString());
+            System.out.println("Status: " + resp.getStatusLine());
+
+            // Process response and extract CID
+            String cid = processResponse(resp);
+
+            cids.put(key,cid);
+
         }
-
-
+        return cids;
    }
+
+   public String processResponse(HttpResponse resp) {
+       // Process response and obtain CID
+       String content = null;
+       try {
+           content = new BasicResponseHandler().handleResponse(resp);
+           System.out.println("Content: " + content);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       ObjectMapper mapper = new ObjectMapper();
+       InfuraResponse ir = null;
+       try {
+           ir = mapper.readValue(content, InfuraResponse.class);
+           System.out.println("INfura response: " + ir);
+           System.out.println("cid: " + ir.getHash());
+           System.out.println("name: " + ir.getName());
+           System.out.println("size: " + ir.getSize());
+       } catch (JsonProcessingException e) {
+           e.printStackTrace();
+       }
+
+       assert ir != null;
+       String cid = ir.getHash();
+       return cid;
+    }
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Map<String,String> references = new HashMap<>();
         references.put("lamborghini.png","https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/homepage/families-gallery/2022/04_12/family_chooser_tecnica_m.png");
-        new IPFSService().publish("",references);
+        new IPFSService().publish(references);
     }
 }

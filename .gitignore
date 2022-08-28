@@ -5,3 +5,4 @@ app/src/main/java/com/instamint/services/mint/eth/.env
 .idea
 # Ignore Gradle build output directory
 build
+app/bin

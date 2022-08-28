@@ -1,5 +1,6 @@
-package com.instamint.services.mint.eth;
+package com.instamint.services;
 
+import com.instamint.services.Party;
 import lombok.Data;
 
 @Data
