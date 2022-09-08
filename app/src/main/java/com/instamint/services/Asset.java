@@ -12,5 +12,4 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Asset {
     private JsonNode asset;
-    private String assetType;
 }

@@ -22,6 +22,9 @@ dependencies {
     implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '3.2.1'
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
+// https://mvnrepository.com/artifact/org.slf4j/slf4j-reload4j
+    testImplementation 'org.slf4j:slf4j-reload4j:1.7.36'
+
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
@@ -34,6 +37,15 @@ dependencies {
     implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.13'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.4.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    implementation 'org.web3j:core:5.0.0'
+    implementation 'org.web3j:crypto:5.0.0'
+    // https://mvnrepository.com/artifact/org.web3j/utils
+    implementation 'org.web3j:utils:5.0.0'
+// https://mvnrepository.com/artifact/org.web3j/abi
+    implementation 'org.web3j:abi:5.0.0'
+// https://mvnrepository.com/artifact/org.web3j/codegen
+    implementation 'org.web3j:codegen:5.0.0'
+
 
 }
 
